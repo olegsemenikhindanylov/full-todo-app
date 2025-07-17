@@ -7,7 +7,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/todos")
-@CrossOrigin(origins = "*")
 public class TodoController {
 
     @Autowired
@@ -30,7 +29,7 @@ public class TodoController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable("id") Long id) {
         repo.deleteById(id);
     }
 }
