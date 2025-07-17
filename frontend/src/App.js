@@ -6,16 +6,17 @@ function App() {
   const [title, setTitle] = useState("");
 
   useEffect(() => {
-    api.get("/").then(res => setTodos(res.data));
+    api.get("").then(res => setTodos(res.data));
   }, []);
 
   const addTodo = () => {
-    api.post("/", { title, description: "", completed: false })
+    api.post("", { title, description: "", completed: false })
       .then(res => setTodos([...todos, res.data]));
   };
 
   const deleteTodo = (id) => {
-    api.delete(`/${id}`).then(() => setTodos(todos.filter(t => t.id !== id)));
+    // Quitar "/" para que axios concatene correctamente
+    api.delete(`${id}`).then(() => setTodos(todos.filter(t => t.id !== id)));
   };
 
   return (
